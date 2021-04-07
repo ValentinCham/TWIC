@@ -1,11 +1,9 @@
 package com.dao;
 
-import java.util.ArrayList;
-
-import com.dto.Ville;
+import java.util.List;
 
 public interface VilleDAO {
-	
-	public ArrayList<Ville> findAllTrains();
 
+	public  String afficheVilles();
+	public String chercheVillesCP(String cp);
 }

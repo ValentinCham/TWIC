@@ -6,6 +6,6 @@ import com.dto.Ville;
 
 public interface VilleBLO {
 
-	public ArrayList<Ville> getInfoVille() throws VilleException;
+	
 	
 }

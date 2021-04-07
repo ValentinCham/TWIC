@@ -1,23 +1,45 @@
 package com.config;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.dao.VilleDAO;
+import com.dao.VilleDAOImpl;
+
 @Configuration
 public class JDBCConfiguration {
 
-	private static final String DB_URL = "";
-	private static final String DB_USER = "";
-	private static final String DB_PASSWORD = "";
-	private static Connection connection = null;
+	private String url;
+    private String username;
+    private String password;
 
-	@Bean
-	public static Connection getConnection() {
-		//TODO
-		
-		return connection;
-	}
+    JDBCConfiguration(String url, String username, String password) {
+        this.url = url;
+        this.username = username;
+        this.password = password;
+    }
 
+    public static JDBCConfiguration getInstance() {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+
+        }
+
+        JDBCConfiguration instance = new JDBCConfiguration("jdbc:postgresql://127.0.0.1:15432/Rest_Api", "postgres", "postgres");
+        return instance;
+    }
+
+    public Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(url, username, password);
+    } 
+
+    // Récupération du Dao
+    public VilleDAO getVilleDao() {
+        return new VilleDAOImpl(this);
+    }
 }
