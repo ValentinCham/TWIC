@@ -34,7 +34,7 @@ public class JDBCConfiguration {
         return instance;
     }
 
-    public Connection getConnection() throws SQLException  {
+    public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, username, password);
     } 
 
