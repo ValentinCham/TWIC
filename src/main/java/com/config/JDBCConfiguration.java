@@ -37,7 +37,9 @@ public class JDBCConfiguration {
     }
     
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://127.0.0.1:15432/Twic", "postgres", "postgres");
+    	String user= "postgres";
+    	String pwd= "postgres";
+        return DriverManager.getConnection("jdbc:postgresql://127.0.0.1:15432/Twic?"+"user=" + user + "&password=" + pwd+";");
     } 
 
     // Récupération du Dao
