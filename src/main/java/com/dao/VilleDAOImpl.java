@@ -5,15 +5,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 import com.config.JDBCConfiguration;
 import com.dto.Ville;
 
+import java.beans.Customizer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 public class VilleDAOImpl implements VilleDAO {
-
+	private static final Logger LOGGER = Logger.getLogger(Customizer.class);
 	private JDBCConfiguration jdbcConfiguration;
 
 	public VilleDAOImpl(JDBCConfiguration jdbcConfiguration) {
@@ -40,7 +44,7 @@ public class VilleDAOImpl implements VilleDAO {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.ERROR, e);
 		} finally {
 
 			try {
@@ -48,7 +52,7 @@ public class VilleDAOImpl implements VilleDAO {
 					statement.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.log(Level.ERROR, e);
 			} // Multiple streams were opened. Only the last is closed.
 			finally {
 				try {
@@ -56,7 +60,7 @@ public class VilleDAOImpl implements VilleDAO {
 						resultat.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOGGER.log(Level.ERROR, e);
 				} 
 			}
 		}
@@ -86,7 +90,7 @@ public class VilleDAOImpl implements VilleDAO {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.ERROR, e);
 		} finally {
 
 			try {
@@ -94,7 +98,7 @@ public class VilleDAOImpl implements VilleDAO {
 					statement.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.log(Level.ERROR, e);
 			} 
 			finally {
 				try {
@@ -102,7 +106,7 @@ public class VilleDAOImpl implements VilleDAO {
 						resultat.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOGGER.log(Level.ERROR, e);
 				} 
 			}
 		}
@@ -131,7 +135,7 @@ public class VilleDAOImpl implements VilleDAO {
 			return "La ville : " + nomCommune + " a été ajoutée !";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.ERROR, e);
 			return "echec";
 		} finally {
 
@@ -140,7 +144,7 @@ public class VilleDAOImpl implements VilleDAO {
 					statement.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.log(Level.ERROR, e);
 			} // Multiple streams were opened. Only the last is closed.
 		}
 	}
@@ -158,7 +162,7 @@ public class VilleDAOImpl implements VilleDAO {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.ERROR, e);
 			return "echec";
 
 		} finally {
@@ -168,7 +172,7 @@ public class VilleDAOImpl implements VilleDAO {
 					statement.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.log(Level.ERROR, e);
 			} // Multiple streams were opened. Only the last is closed.
 		}
 	}
@@ -193,7 +197,7 @@ public class VilleDAOImpl implements VilleDAO {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.ERROR, e);
 			return "echec";
 
 		} finally {
@@ -203,7 +207,7 @@ public class VilleDAOImpl implements VilleDAO {
 					statement.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.log(Level.ERROR, e);
 			} // Multiple streams were opened. Only the last is closed.
 		}
 
