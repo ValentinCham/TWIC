@@ -29,7 +29,7 @@ public class VilleDAOImpl implements VilleDAO {
 		Connection connexion = null;
 		Statement statement = null;
 		ResultSet resultat = null;
-		List<Ville> listeVilles = new ArrayList<Ville>();
+		List<Ville> listeVilles = new ArrayList<>();
 		try {
 			connexion = jdbcConfiguration.getConnection();
 			statement = connexion.createStatement();
@@ -129,7 +129,7 @@ public class VilleDAOImpl implements VilleDAO {
 			return "La ville : " + nomCommune + " a été ajoutée !";
 		} catch (SQLException e) {
 			LOGGER.log(Level.ERROR, e);
-			return "echec";
+			return null;
 		} finally {
 
 			try {
@@ -154,7 +154,7 @@ public class VilleDAOImpl implements VilleDAO {
 
 		} catch (SQLException e) {
 			LOGGER.log(Level.ERROR, e);
-			return "echec";
+			return null;
 
 		} finally {
 
@@ -187,7 +187,7 @@ public class VilleDAOImpl implements VilleDAO {
 
 		} catch (SQLException e) {
 			LOGGER.log(Level.ERROR, e);
-			return "echec";
+			return null;
 
 		} finally {
 
