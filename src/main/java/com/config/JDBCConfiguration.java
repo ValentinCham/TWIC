@@ -15,7 +15,6 @@ public class JDBCConfiguration {
     private  String password;
 
     public JDBCConfiguration() {
-		// TODO Auto-generated constructor stub
 	}
     JDBCConfiguration(String url, String username, String password) {
         this.url = url;

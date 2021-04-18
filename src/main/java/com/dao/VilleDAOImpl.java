@@ -43,7 +43,6 @@ public class VilleDAOImpl implements VilleDAO {
 				listeVilles.add(ville);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			LOGGER.log(Level.ERROR, e);
 		} finally {
 
@@ -51,7 +50,6 @@ public class VilleDAOImpl implements VilleDAO {
 				if (statement != null)
 					statement.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				LOGGER.log(Level.ERROR, e);
 			} // Multiple streams were opened. Only the last is closed.
 			finally {
@@ -59,7 +57,6 @@ public class VilleDAOImpl implements VilleDAO {
 					if (resultat != null)
 						resultat.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					LOGGER.log(Level.ERROR, e);
 				} 
 			}
@@ -89,7 +86,6 @@ public class VilleDAOImpl implements VilleDAO {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			LOGGER.log(Level.ERROR, e);
 		} finally {
 
@@ -97,7 +93,6 @@ public class VilleDAOImpl implements VilleDAO {
 				if (statement != null)
 					statement.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				LOGGER.log(Level.ERROR, e);
 			} 
 			finally {
@@ -105,7 +100,6 @@ public class VilleDAOImpl implements VilleDAO {
 					if (resultat != null)
 						resultat.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					LOGGER.log(Level.ERROR, e);
 				} 
 			}
@@ -134,7 +128,6 @@ public class VilleDAOImpl implements VilleDAO {
 
 			return "La ville : " + nomCommune + " a été ajoutée !";
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			LOGGER.log(Level.ERROR, e);
 			return "echec";
 		} finally {
@@ -143,9 +136,8 @@ public class VilleDAOImpl implements VilleDAO {
 				if (statement != null)
 					statement.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				LOGGER.log(Level.ERROR, e);
-			} // Multiple streams were opened. Only the last is closed.
+			} 
 		}
 	}
 
@@ -161,7 +153,6 @@ public class VilleDAOImpl implements VilleDAO {
 			return "La ville " + codeInsee + " a été supprimé !";
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			LOGGER.log(Level.ERROR, e);
 			return "echec";
 
@@ -171,7 +162,6 @@ public class VilleDAOImpl implements VilleDAO {
 				if (statement != null)
 					statement.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				LOGGER.log(Level.ERROR, e);
 			} // Multiple streams were opened. Only the last is closed.
 		}
@@ -196,7 +186,6 @@ public class VilleDAOImpl implements VilleDAO {
 			return "La ville " + nomCommune + " a été modifié !";
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			LOGGER.log(Level.ERROR, e);
 			return "echec";
 
@@ -206,7 +195,6 @@ public class VilleDAOImpl implements VilleDAO {
 				if (statement != null)
 					statement.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				LOGGER.log(Level.ERROR, e);
 			} // Multiple streams were opened. Only the last is closed.
 		}
