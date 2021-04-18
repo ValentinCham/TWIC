@@ -50,6 +50,15 @@ public class VilleDAOImpl implements VilleDAO {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} // Multiple streams were opened. Only the last is closed.
+			finally {
+				try {
+					if (resultat != null)
+						resultat.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}
 		}
 		return listeVilles;
 	}
@@ -86,7 +95,16 @@ public class VilleDAOImpl implements VilleDAO {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} // Multiple streams were opened. Only the last is closed.
+			} 
+			finally {
+				try {
+					if (resultat != null)
+						resultat.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}
 		}
 
 		return listeVilles;
