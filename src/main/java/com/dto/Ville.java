@@ -1,8 +1,23 @@
 package com.dto;
 
 public class Ville {
-	
 	private String codeCommune;
+	private String nomCommune;
+	private String codePostal;
+	private String libelleAcheminement;	
+	private String ligne;
+	private String longitude;
+	private String latitude;
+	
+	public Ville(String codeCommune,String nomCommune,String codePostal,String libelleAcheminement,String ligne,String longitude, String latitude) {
+		this.nomCommune = nomCommune;
+		this.codePostal = codePostal;
+		this.libelleAcheminement = libelleAcheminement;
+		this.ligne = ligne;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.codeCommune = codeCommune;
+	}
 	public String getCodeCommune() {
 		return codeCommune;
 	}
@@ -47,10 +62,5 @@ public class Ville {
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
-	private String nomCommune;
-	private String codePostal;
-	private String libelleAcheminement;	
-	private String ligne;
-	private String longitude;
-	private String latitude;
+	
 }

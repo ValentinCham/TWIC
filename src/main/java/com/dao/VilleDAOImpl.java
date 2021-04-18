@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.config.JDBCConfiguration;
+import com.dto.Ville;
+
 import  java.sql.Connection;
 import java.sql.PreparedStatement;
 import  java.sql.Statement;
@@ -20,51 +22,134 @@ public class VilleDAOImpl implements VilleDAO {
     }
 	
 	@Override
-	public String afficheVilles() {
+	public List<Ville> afficherVilles() {
 		Connection connexion = null;
         Statement statement = null;
         ResultSet resultat = null;
-        List<String> villes = new ArrayList<String>();
-        String str = "";
+        List<Ville> listeVilles = new ArrayList<Ville>();
             try {
 				connexion = jdbcConfiguration.getConnection();
 				statement = connexion.createStatement();
-	            resultat = statement.executeQuery("SELECT Nom_commune FROM ville_france;");
+	            resultat = statement.executeQuery("SELECT * FROM ville_france;");
 	            
 	            while(resultat.next()) {
-	            	villes.add(resultat.getString("Nom_commune"));
-	            	str += "nom commune : "+resultat.getString("Nom_commune") + "<br/>";
+	            	Ville ville = new Ville(resultat.getString("code_commune_insee"),resultat.getString("Nom_commune"),resultat.getString("code_postal"),
+	            			resultat.getString("libelle_acheminement"),resultat.getString("ligne_5"),
+	            			resultat.getString("longitude"),resultat.getString("latitude"));
+	            	
+	            	listeVilles.add(ville);
 	            }
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-       System.out.println(str);
-       return str;
+       return listeVilles;
 	}
 	
-	public String chercheVillesCP(String cp) {
+	public List<Ville> afficherVilles(String codePostal) {
 		
 		Connection connexion = null;
         PreparedStatement statement = null;
         ResultSet resultat = null;
-        String result="";
+        List<Ville> listeVilles = new ArrayList<Ville>();
+
             try {
 				connexion = jdbcConfiguration.getConnection();
-	            statement = connexion.prepareStatement("SELECT Nom_commune FROM ville_france WHERE Code_postal = ?;");
-	            statement.setString(1, cp);
+	            statement = connexion.prepareStatement("SELECT * FROM ville_france WHERE Code_postal = ?;");
+	            statement.setString(1, codePostal);
 	            resultat = statement.executeQuery();
 	            
-	            resultat.next();
-	            
-	            result = resultat.getString("Nom_commune");
+	            while(resultat.next()) {
+	            	Ville ville = new Ville(resultat.getString("code_commune_insee"),resultat.getString("Nom_commune"),resultat.getString("code_postal"),
+	            			resultat.getString("libelle_acheminement"),resultat.getString("ligne_5"),
+	            			resultat.getString("longitude"),resultat.getString("latitude"));
+	            	
+	            	listeVilles.add(ville);
+	            }
 	            
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
-		return result;
+		return listeVilles;
 		
 	}
+
+	@Override
+	public String insertVille(String codeInsee, String nomCommune, String codePostal, String libelle, String ligne,
+			String latitude, String longitude) {
+		Connection connexion = null;
+        PreparedStatement statement = null;
+        try {
+			connexion = jdbcConfiguration.getConnection();
+            statement = connexion.prepareStatement("INSERT INTO ville_france(Code_commune_INSEE, Nom_commune,"
+            		+ " Code_postal, Libelle_acheminement, Ligne_5, Latitude, Longitude) "
+            		+ "VALUES (?,?,?,?,?,?,?);");
+            statement.setString(1, codeInsee);
+            statement.setString(2, nomCommune);
+            statement.setString(3, codePostal);
+            statement.setString(4, libelle);
+            statement.setString(5, ligne);
+            statement.setString(6, latitude);
+            statement.setString(7, longitude);
+            
+            return "La ville : "+nomCommune+" a été ajoutée !";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "echec";
+		}
+	}
+
+	@Override
+	public String deleteVille(String codeInsee) {
+		Connection connexion = null;
+        PreparedStatement statement = null;
+        try {
+			connexion = jdbcConfiguration.getConnection();
+            statement = connexion.prepareStatement("DELETE FROM ville_france WHERE Code_commune_INSEE =?;");
+
+            statement.setString(1, codeInsee);
+            return "La ville "+codeInsee+" a été supprimé !";
+
+            
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "echec";
+
+		}		
+	}
+
+	@Override
+	public String updateVille(String codeInsee, String nomCommune, String codePostal, String libelle, String ligne,
+			String latitude, String longitude) {
+		Connection connexion = null;
+        PreparedStatement statement = null;
+        try {
+			connexion = jdbcConfiguration.getConnection();
+            statement = connexion.prepareStatement("UPDATE ville_france SET Nom_commune=?,Code_postal=?,"
+            		+ "Libelle_acheminement=?,Ligne_5=?,"
+            		+ "Latitude=?,Longitude=? WHERE Code_commune_INSEE=?;");
+            statement.setString(1, nomCommune);
+            statement.setString(2, codePostal);
+            statement.setString(3, libelle);
+            statement.setString(4, ligne);
+            statement.setString(5, latitude);
+            statement.setString(6, longitude);
+            statement.setString(7, codeInsee);
+            return "La ville "+nomCommune+" a été modifié !";
+
+            
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "echec";
+
+		}
+		
+	}
+
+	
 }
