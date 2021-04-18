@@ -1,7 +1,7 @@
 package com.dto;
 
 public class Ville {
-	private String codeCommune;
+	private String codeInsee;
 	private String nomCommune;
 	private String codePostal;
 	private String libelleAcheminement;	
@@ -9,20 +9,20 @@ public class Ville {
 	private String longitude;
 	private String latitude;
 	
-	public Ville(String codeCommune,String nomCommune,String codePostal,String libelleAcheminement,String ligne,String longitude, String latitude) {
+	public Ville(String codeInsee,String nomCommune,String codePostal,String libelleAcheminement,String ligne,String longitude, String latitude) {
 		this.nomCommune = nomCommune;
 		this.codePostal = codePostal;
 		this.libelleAcheminement = libelleAcheminement;
 		this.ligne = ligne;
 		this.longitude = longitude;
 		this.latitude = latitude;
-		this.codeCommune = codeCommune;
+		this.codeInsee = codeInsee;
 	}
-	public String getCodeCommune() {
-		return codeCommune;
+	public String getCodeInsee() {
+		return codeInsee;
 	}
-	public void setCodeCommune(String codeCommune) {
-		this.codeCommune = codeCommune;
+	public void setCodeInsee(String codeInsee) {
+		this.codeInsee = codeInsee;
 	}
 	public String getNomCommune() {
 		return nomCommune;
